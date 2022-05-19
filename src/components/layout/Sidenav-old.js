@@ -196,16 +196,30 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="3">
-          <NavLink to="/admin-view">
+          <NavLink to="/tables">
             <span
               className="icon"
               style={{
-                background: page === "admin-view" ? color : "",
+                background: page === "tables" ? color : "",
               }}
             >
               {tables}
             </span>
             <span className="label">Admin View</span>
+          </NavLink>
+        </Menu.Item>
+        
+        <Menu.Item key="4">
+          <NavLink to="/rtl">
+            <span
+              className="icon"
+              style={{
+                background: page === "rtl" ? color : "",
+              }}
+            >
+              {rtl}
+            </span>
+            <span className="label">RTL</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item className="menu-item-header" key="5">

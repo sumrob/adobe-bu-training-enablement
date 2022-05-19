@@ -150,3 +150,61 @@ export const listComments = /* GraphQL */ `
     }
   }
 `;
+export const getTodo = /* GraphQL */ `
+  query GetTodo($id: ID!) {
+    getTodo(id: $id) {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTodos = /* GraphQL */ `
+  query ListTodos(
+    $filter: ModelTodoFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getEmployee = /* GraphQL */ `
+  query GetEmployee($id: ID!) {
+    getEmployee(id: $id) {
+      id
+      email
+      practice
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listEmployees = /* GraphQL */ `
+  query ListEmployees(
+    $filter: ModelEmployeeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEmployees(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        email
+        practice
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

@@ -232,3 +232,69 @@ export const onDeleteComment = /* GraphQL */ `
     }
   }
 `;
+export const onCreateTodo = /* GraphQL */ `
+  subscription OnCreateTodo {
+    onCreateTodo {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTodo = /* GraphQL */ `
+  subscription OnUpdateTodo {
+    onUpdateTodo {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTodo = /* GraphQL */ `
+  subscription OnDeleteTodo {
+    onDeleteTodo {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateEmployee = /* GraphQL */ `
+  subscription OnCreateEmployee {
+    onCreateEmployee {
+      id
+      email
+      practice
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateEmployee = /* GraphQL */ `
+  subscription OnUpdateEmployee {
+    onUpdateEmployee {
+      id
+      email
+      practice
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteEmployee = /* GraphQL */ `
+  subscription OnDeleteEmployee {
+    onDeleteEmployee {
+      id
+      email
+      practice
+      createdAt
+      updatedAt
+    }
+  }
+`;

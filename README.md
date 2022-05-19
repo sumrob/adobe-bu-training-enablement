@@ -71,7 +71,7 @@ Muse Ant Design Dashboard
     │   │   ├── components
     │   │   │   ├── chart
     │   │   │   └── layout
-    │   │   ├── pages
+    │   │   ├── 
     │   │   │   ├── Billing.js
     │   │   │   ├── Home.js
     │   │   │   ├── Profile.js

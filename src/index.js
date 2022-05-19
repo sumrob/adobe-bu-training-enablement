@@ -10,20 +10,25 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById("root"),
-);
+//Amplify Stuff here
+import Amplify from 'aws-amplify';
+import config from './aws-exports';
 
+//End Amplify
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+    document.getElementById("root"),
+  );
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

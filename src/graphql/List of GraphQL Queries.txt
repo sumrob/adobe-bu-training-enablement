@@ -1,0 +1,22 @@
+List of GraphQL Queries
+
+query listEmployees {
+  listEmployees {
+    items {
+      id
+      email
+      practice
+    }
+  }
+}
+
+mutation createEmployee {
+    createEmployee(input: {
+      email: "robert.sumner@perficient.com"
+      practice: "AEM Content"
+    }) {
+      id
+      email
+      practice
+    }
+  }
