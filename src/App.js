@@ -23,7 +23,10 @@ import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
 import React, { Component }  from 'react';
 
-function App() {
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+
+
+function App({ isPassedToWithAuthenticator, signOut, user }) {
   return (
     <div className="App">
       <Switch>
@@ -42,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);
