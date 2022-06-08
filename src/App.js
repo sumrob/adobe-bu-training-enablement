@@ -11,7 +11,7 @@
 */
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
-import AdminView from "./pages/AdminView";
+import EmployeeList from "./pages/EmployeeList";
 import Billing from "./pages/Billing";
 import Rtl from "./pages/Rtl";
 import Profile from "./pages/Profile";
@@ -21,20 +21,67 @@ import Main from "./components/layout/Main";
 import "antd/dist/antd.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
-import React, { Component }  from 'react';
+import React, { Component, useEffect, useState }  from 'react';
+import Amplify, { API, graphqlOperation } from 'aws-amplify'
+import { createEmployee } from './graphql/mutations'
+import { listEmployees } from './graphql/queries'
 
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import awsExports from "./aws-exports";
 
 
-function App({ isPassedToWithAuthenticator, signOut, user }) {
+Amplify.configure(awsExports);
+
+const initialState = { name: '', description: '' }
+//import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+
+export const EmployeeContext = React.createContext({
+  employees: []
+});
+
+export const SkillContext = React.createContext({
+  skills: []
+});
+
+//function App({ isPassedToWithAuthenticator, signOut, user }) {
+function App() {
+  //const [formState, setFormState] = useState(initialState)
+  const [employees, setEmployees] = useState([])
+
+  useEffect(() => {
+    fetchEmployees()
+  }, [])
+
+  async function fetchEmployees() {
+    try {
+      const employeeData = await API.graphql(graphqlOperation(listEmployees))
+      const employees = employeeData.data.listEmployees.items
+      setEmployees(employees)
+      //EmployeeContext.Provider.value = {employees};
+      //set context here...
+    } catch (err) { console.log('error fetching employees') }
+  }
+
   return (
     <div className="App">
+    {
+    /*employees.map((employee, index) => (
+      <div key={employee.id ? employee.id : index}>
+        <p>{employee.id}</p>
+        <p>{employee.email}</p>
+        <p>{employee.practice}</p>
+      </div>
+    ))*/
+    }
       <Switch>
         <Route path="/sign-up" exact component={SignUp} />
         <Route path="/sign-in" exact component={SignIn} />
         <Main>
           <Route exact path="/dashboard" component={Home} />
-          <Route exact path="/admin-view" component={AdminView} />
+          <EmployeeContext.Provider value={{
+            employees
+          }}>
+            <Route exact path="/employee-list" component={EmployeeList} />
+          </EmployeeContext.Provider>
           <Route exact path="/billing" component={Billing} />
           <Route exact path="/rtl" component={Rtl} />
           <Route exact path="/profile" component={Profile} />
@@ -45,4 +92,5 @@ function App({ isPassedToWithAuthenticator, signOut, user }) {
   );
 }
 
-export default withAuthenticator(App);
+//export default withAuthenticator(App);
+export default App;
